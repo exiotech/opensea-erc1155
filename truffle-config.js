@@ -50,12 +50,12 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     development: {
-      host: 'localhost',
+      host: '127.0.0.1',
       port: 7545,
       gas: 4600000,
       network_id: '*' // Match any network id
     },
-    
+
     rinkeby: {
       provider: function() {
         return new HDWalletProvider(
@@ -92,15 +92,15 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.5.12"
+      version: "^0.5.12",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      // settings: {          // See the solidity docs for advice about optimization and evmVersion
-      //  optimizer: {
-      //    enabled: false,
-      //    runs: 200
-      //  },
-      //  evmVersion: "byzantium"
-      // }
-    }
-  }
+      settings: {          // See the solidity docs for advice about optimization and evmVersion
+       optimizer: {
+         enabled: false,
+         runs: 200
+       },
+       evmVersion: "constantinople"
+      }
+    },
+  },
 };

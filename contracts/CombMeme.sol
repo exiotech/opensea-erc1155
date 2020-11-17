@@ -6,17 +6,17 @@ import "./ERC1155Tradable.sol";
  * @title MyCollectible
  * MyCollectible - a contract for my semi-fungible tokens.
  */
-contract MyCollectible is ERC1155Tradable {
+contract CombMeme is ERC1155Tradable {
   constructor(address _proxyRegistryAddress)
   ERC1155Tradable(
-    "MyCollectible",
-    "MCB",
+    "CombMeme",
+    "CBM",
     _proxyRegistryAddress
   ) public {
     _setBaseMetadataURI("https://creatures-api.opensea.io/api/creature/");
   }
 
-  function contractURI() public view returns (string memory) {
+  function contractURI() public pure returns (string memory) {
     return "https://creatures-api.opensea.io/contract/opensea-erc1155";
   }
 }
