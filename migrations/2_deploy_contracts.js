@@ -3,9 +3,9 @@ const Sell = artifacts.require("Sell");
 const MyLootBox = artifacts.require("MyLootBox");
 
 // Set to false if you only want the collectible to deploy
-const ENABLE_LOOTBOX = true;
+const ENABLE_LOOTBOX = false;
 // KarmaToken address
-const KARMATOKEN = "0x633a59330141D0585900287767f80CfAd7AF6457";
+const KARMATOKEN = "0xE456F4099ec57d4634678A4Ba503eaE0030A274C"//"rinkeby 0x633a59330141D0585900287767f80CfAd7AF6457";
 // Set if you want to create your own collectible
 const NFT_ADDRESS_TO_USE = undefined; // e.g. Enjin: '0xfaafdc07907ff5120a76b34b731b278c38d6043c'
 // If you want to set preminted token ids for specific classes
@@ -21,7 +21,9 @@ module.exports = function(deployer, network) {
   }
 
   if (!ENABLE_LOOTBOX) {
-    deployer.deploy(CombMeme, proxyRegistryAddress,  {gas: 5000000});
+    deployer.deploy(CombMeme, proxyRegistryAddress,  {gas: 5000000}).then(() => {
+      return deployer.deploy(Sell, CombMeme.address, KARMATOKEN)
+    })
   } else if (NFT_ADDRESS_TO_USE) {
     deployer.deploy(MyLootBox, proxyRegistryAddress, NFT_ADDRESS_TO_USE, {gas: 5000000})
       .then(setupLootbox);

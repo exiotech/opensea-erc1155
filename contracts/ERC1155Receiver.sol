@@ -1,6 +1,7 @@
 pragma solidity ^0.5.11;
 
-import "openzeppelin-solidity/contracts/introspection/ERC165.sol";
+// import "openzeppelin-solidity/contracts/introspection/ERC165.sol";
+import "./ERC165.sol";
 import "./IERC1155Receiver.sol";
 
 /**

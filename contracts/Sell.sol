@@ -1,7 +1,7 @@
 pragma solidity ^0.5.11;
 
-import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "multi-token-standard/contracts/interfaces/IERC20.sol";
 import "./ERC1155Holder.sol";
 import "./CombMeme.sol";
 
@@ -34,7 +34,7 @@ contract Sell is ERC1155Holder, Ownable {
 
     function buy(uint256 _amountOfKarmaToken, uint256 _idForOrders) public {
         require(_amountOfKarmaToken == orders[_idForOrders].price, "Incorrect price");
-        require(orders[_idForOrders].price == 0, "Order does not exist");
+        require(orders[_idForOrders].price != 0, "Order does not exist");
 
         karmaToken.transferFrom(msg.sender, address(this), _amountOfKarmaToken);
         nft.safeTransferFrom(address(this), msg.sender, orders[_idForOrders].id, orders[_idForOrders].amount, "");
