@@ -26,11 +26,12 @@ contract MyFactory is IFactory, Ownable, ReentrancyGuard {
    * Three different options for minting CombMeme (basic, premium, and gold).
    */
   enum Option {
-    Basic,
-    Premium,
-    Gold
+    test,
+    Funny,
+    Artistic,
+    Nature
   }
-  uint256 constant NUM_OPTIONS = 3;
+  uint256 constant NUM_OPTIONS = 4;
   mapping (uint256 => uint256) public optionToTokenID;
 
   constructor(address _proxyRegistryAddress, address _nftAddress) public {
