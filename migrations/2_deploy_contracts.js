@@ -3,7 +3,7 @@ const Sell = artifacts.require("Sell");
 const MyLootBox = artifacts.require("MyLootBox");
 
 // Set to false if you only want the collectible to deploy
-const ENABLE_LOOTBOX = false;
+const ENABLE_LOOTBOX = true;
 // KarmaToken address
 const KARMATOKEN = "0xE456F4099ec57d4634678A4Ba503eaE0030A274C"//"rinkeby 0x633a59330141D0585900287767f80CfAd7AF6457";
 // Set if you want to create your own collectible
