@@ -16,6 +16,8 @@ module.exports = function(deployer, network) {
   let proxyRegistryAddress;
   if (network === 'rinkeby') {
     proxyRegistryAddress = "0xf57b2c51ded3a29e6891aba85459d600256cf317";
+  } else if(network === 'rinkeby') {
+    proxyRegistryAddress = "0x0";
   } else {
     proxyRegistryAddress = "0xa5409ec958c83c3f309868babaca7c86dcb077c1";
   }
@@ -30,10 +32,11 @@ module.exports = function(deployer, network) {
   } else {
     deployer.deploy(CombMeme, proxyRegistryAddress, {gas: 5000000})
       .then(() => {
-        deployer.deploy(MyLootBox, proxyRegistryAddress, CombMeme.address, {gas: 5000000}).then(() => {
-          return deployer.deploy(Sell, CombMeme.address, KARMATOKEN, {gas: 5000000})
+        return deployer.deploy(MyLootBox, proxyRegistryAddress, CombMeme.address, {gas: 5000000})
+          .then(() => {
+            return deployer.deploy(Sell, CombMeme.address, KARMATOKEN, {gas: 5000000})
+          })
         })
-      })
       .then(setupLootbox);
   }
 };

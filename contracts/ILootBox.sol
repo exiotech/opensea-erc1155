@@ -51,7 +51,7 @@ interface ILootBox {
     * @param _toAddress address of the future owner of the asset(s)
     * @param _amount amount of the option to mint
     */
-  function open(uint256 _optionId, address _toAddress, uint256 _amount) external;
+  function open(uint256 _optionId, uint256 _classId, address _toAddress, uint256 _amount) external;
 
   ////////
   // ADMINISTRATION
@@ -68,12 +68,6 @@ interface ILootBox {
    * creating/minting into the nft address
    */
   function resetClass(uint256 _classId) external;
-
-  /**
-   * @dev Withdraw lootbox revenue
-   * Only accessible by contract owner
-   */
-  function withdraw() external;
 
   ///////
   // Get things to work on OpenSea with mock methods below

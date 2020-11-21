@@ -1,7 +1,7 @@
 pragma solidity ^0.5.11;
 
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
-import "multi-token-standard/contracts/interfaces/IERC20.sol";
+import "./IKarmaToken.sol";
 import "./ERC1155Holder.sol";
 import "./CombMeme.sol";
 
@@ -13,12 +13,12 @@ contract Sell is ERC1155Holder, Ownable {
     }
 
     CombMeme public nft;
-    IERC20 public karmaToken;
+    IKarmaToken public karmaToken;
     Order[] public orders;
 
     constructor(address _nft, address _erc20) public {
         nft = CombMeme(_nft);
-        karmaToken = IERC20(_erc20);
+        karmaToken = IKarmaToken(_erc20);
     }
 
     function createOrder(uint256 _id, uint256 _amountOfNft, uint256 _price) public onlyOwner {
