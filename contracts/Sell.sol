@@ -35,6 +35,7 @@ contract Sell is ERC1155Holder, Ownable {
     function buy(uint256 _amountOfKarmaToken, uint256 _idForOrders) public {
         require(_amountOfKarmaToken == orders[_idForOrders].price, "Incorrect price");
         require(orders[_idForOrders].price != 0, "Order does not exist");
+        require(karmaToken.balanceOf(msg.sender) < _amountOfKarmaToken, "Order does not exist");
 
         karmaToken.burnFrom(msg.sender, _amountOfKarmaToken);
         nft.safeTransferFrom(address(this), msg.sender, orders[_idForOrders].id, orders[_idForOrders].amount, "");

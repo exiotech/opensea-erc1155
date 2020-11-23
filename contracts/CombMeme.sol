@@ -13,7 +13,7 @@ contract CombMeme is ERC1155Tradable {
     "CBM",
     _proxyRegistryAddress
   ) public {
-    _setBaseMetadataURI("https://creatures-api.opensea.io/api/creature/");
+    _setBaseMetadataURI("https://static.combme.me");
   }
 
   function contractURI() public pure returns (string memory) {

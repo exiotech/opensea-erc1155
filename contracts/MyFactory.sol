@@ -44,11 +44,11 @@ contract MyFactory is IFactory, Ownable, ReentrancyGuard {
   /////
 
   function name() external view returns (string memory) {
-    return "My Collectible Pre-Sale";
+    return "My Combmeme Pre-Sale";
   }
 
   function symbol() external view returns (string memory) {
-    return "MCP";
+    return "MCB";
   }
 
   function supportsFactoryInterface() external view returns (bool) {
