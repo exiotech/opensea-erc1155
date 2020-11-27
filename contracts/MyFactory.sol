@@ -27,9 +27,9 @@ contract MyFactory is IFactory, Ownable, ReentrancyGuard {
    */
   enum Option {
     test,
-    Funny,
-    Artistic,
-    Nature
+    Legendary,
+    Rare,
+    Seasons
   }
   uint256 constant NUM_OPTIONS = 4;
   mapping (uint256 => uint256) public optionToTokenID;
