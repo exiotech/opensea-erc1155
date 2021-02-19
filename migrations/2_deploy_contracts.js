@@ -1,9 +1,12 @@
 const CombMeme = artifacts.require("CombMeme");
+const CombMemeFlat = artifacts.require("CombMemeFlat");
 const Sell = artifacts.require("Sell");
+// const SellFlat = artifacts.require("SellFlat");
+// const MyLootBoxFlat = artifacts.require("MyLootBoxFlat");
 const MyLootBox = artifacts.require("MyLootBox");
 
 // Set to false if you only want the collectible to deploy
-const ENABLE_LOOTBOX = true;
+const ENABLE_LOOTBOX = false;
 // KarmaToken address
 const KARMATOKEN = "0xE456F4099ec57d4634678A4Ba503eaE0030A274C"//"rinkeby 0x633a59330141D0585900287767f80CfAd7AF6457";
 // Set if you want to create your own collectible
@@ -30,11 +33,11 @@ module.exports = function(deployer, network) {
     deployer.deploy(MyLootBox, proxyRegistryAddress, NFT_ADDRESS_TO_USE, {gas: 5000000})
       .then(setupLootbox);
   } else {
-    deployer.deploy(CombMeme, proxyRegistryAddress, {gas: 5000000})
+    deployer.deploy(CombMemeFlat, proxyRegistryAddress, {gas: 5000000})
       .then(() => {
-        return deployer.deploy(MyLootBox, proxyRegistryAddress, CombMeme.address, {gas: 5000000})
+        return deployer.deploy(MyLootBoxFlat, proxyRegistryAddress, CombMemeFlat.address, {gas: 5000000})
           .then(() => {
-            return deployer.deploy(Sell, CombMeme.address, KARMATOKEN, {gas: 5000000})
+            return deployer.deploy(SellFlat, CombMemeFlat.address, KARMATOKEN, {gas: 5000000})
           })
         })
       .then(setupLootbox);

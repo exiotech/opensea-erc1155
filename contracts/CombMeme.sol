@@ -7,16 +7,14 @@ import "./ERC1155Tradable.sol";
  * MyCollectible - a contract for my semi-fungible tokens.
  */
 contract CombMeme is ERC1155Tradable {
-  constructor(address _proxyRegistryAddress)
-  ERC1155Tradable(
-    "CombMeme",
-    "CBM",
-    _proxyRegistryAddress
-  ) public {
-    _setBaseMetadataURI("https://static.combme.me");
-  }
+    constructor(address _proxyRegistryAddress)
+        public
+        ERC1155Tradable("CombMeme", "CBM", _proxyRegistryAddress)
+    {
+        _setBaseMetadataURI("https://api.combme.me/memes/");
+    }
 
-  function contractURI() public pure returns (string memory) {
-    return "https://creatures-api.opensea.io/contract/opensea-erc1155";
-  }
+    function contractURI() public pure returns (string memory) {
+        return "https://api.combme.me/contract/memes-erc115";
+    }
 }

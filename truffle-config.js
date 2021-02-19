@@ -21,17 +21,17 @@
 const HDWalletProvider = require('truffle-hdwallet-provider');
 require('dotenv').config()
 
-const MNEMONIC = process.env.MNEMONIC;
-const INFURA_KEY = process.env.INFURA_KEY;
+// const MNEMONIC = process.env.MNEMONIC;
+// const INFURA_KEY = process.env.INFURA_KEY;
 
-const needsInfura = process.env.npm_config_argv &&
-      (process.env.npm_config_argv.includes('rinkeby') ||
-       process.env.npm_config_argv.includes('live'));
+// const needsInfura = process.env.npm_config_argv &&
+//       (process.env.npm_config_argv.includes('rinkeby') ||
+//        process.env.npm_config_argv.includes('live'));
 
-if ((!MNEMONIC || !INFURA_KEY) && needsInfura) {
-  console.error('Please set a mnemonic and infura key.');
-  process.exit(0);
-}
+// if ((!MNEMONIC || !INFURA_KEY) && needsInfura) {
+//   console.error('Please set a mnemonic and infura key.');
+//   process.exit(0);
+// }
 
 module.exports = {
   /**
@@ -53,20 +53,26 @@ module.exports = {
     // options below to some value.
     development: {
       host: '127.0.0.1',
-      port: 7545,
+      port: 8545,
       gas: 4600000,
       network_id: '*' // Match any network id
     },
 
+    // rinkeby: {
+    //   provider: function() {
+    //     return new HDWalletProvider(
+    //       MNEMONIC,
+    //       "https://rinkeby.infura.io/v3/" + INFURA_KEY
+    //     );
+    //   },
+    //   network_id: "*",
+    //   gas: 4600000
+    // },
+
+
     rinkeby: {
-      provider: function() {
-        return new HDWalletProvider(
-          MNEMONIC,
-          "https://rinkeby.infura.io/v3/" + INFURA_KEY
-        );
-      },
-      network_id: "*",
-      gas: 4600000
+      provider: new HDWalletProvider(process.env.DEPLOYMENT_ACCOUNT_KEY, "https://rinkeby.infura.io/v3/" + process.env.INFURA_API_KEY),
+      network_id: 4
     },
 
     live: {
@@ -89,6 +95,14 @@ module.exports = {
       currency: 'USD',
       gasPrice: 2
     }
+  },
+
+  plugins: [
+    'truffle-plugin-verify'
+  ],
+
+  api_keys: {
+    etherscan: process.env.ETHERSCAN
   },
 
   // Configure your compilers
